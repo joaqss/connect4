@@ -1,0 +1,26 @@
+FEEDBACK: hello
+
+FEEDBACK: hello feedback 2
+
+FEEDBACK: l
+
+FEEDBACK: hello
+
+FEEDBACK: please debug the game.
+
+FEEDBACK: just a feedback test.
+
+FEEDBACK: guds
+
+FEEDBACK: Lol, nice code. Great job! Recommendation sent on LinkedIn, pls approve ey.
+
+FEEDBACK: refactor challenge starts now
+
+FEEDBACK: colors in x and o
+
+FEEDBACK: SHEEEEESSSHHHHHHHHH 10 stars
+
+FEEDBACK: debug nalang lods.
+
+FEEDBACK: napindot lang
+

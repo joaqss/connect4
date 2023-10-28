@@ -1,0 +1,75 @@
+Sun Oct 22 14:10:57 2023
+pao: 1 | gabie: 0
+
+Sun Oct 22 14:11:08 2023
+pao: 1 | gabie: 0
+
+Mon Oct 23 07:48:27 2023
+joaqs: 1|pao: 1
+
+Mon Oct 23 08:12:16 2023
+Nelo: 0|Joaqs: 1
+
+Mon Oct 23 09:40:21 2023
+jlo: 0|joaqs: 1
+
+Mon Oct 23 09:48:37 2023
+jim: 0|joaqs: 2
+
+Mon Oct 23 18:53:36 2023
+f: 1|ff: 0
+
+Mon Oct 23 19:09:54 2023
+test1: 1|test2: 0
+
+Mon Oct 23 19:10:04 2023
+test1: 1|test2: 0
+
+Mon Oct 23 19:10:17 2023
+test1: 0|test2: 1
+
+Mon Oct 23 19:10:29 2023
+test1: 0|test2: 1
+
+Mon Oct 23 19:11:03 2023
+f: 1|ff: 0
+
+Tue Oct 24 09:41:21 2023
+tester1: 0|tester2: 0
+
+Tue Oct 24 09:51:45 2023
+Joaqs: 1|Chrysler Daniot: 0
+
+Tue Oct 24 12:11:30 2023
+lei lei: 2|tash: 0
+
+Tue Oct 24 13:33:51 2023
+Angel: 1|Joaqs: 4
+
+Tue Oct 24 15:16:56 2023
+f: 1|ff: 0
+
+Tue Oct 24 15:29:19 2023
+f: 5|ff: 4
+
+Tue Oct 24 15:59:35 2023
+f: 0|fff: 1
+
+Tue Oct 24 16:14:37 2023
+f: 1|fff: 0
+
+Tue Oct 24 16:29:47 2023
+xXw4axdestroyerzXx: 3|joaqs: 1
+
+Wed Oct 25 10:03:00 2023
+gabie: 1|pao: 1
+
+Thu Oct 26 08:27:36 2023
+joaqs: 1|potassium: 0
+
+Fri Oct 27 08:06:55 2023
+one: 0|two: 1
+
+Sat Oct 28 10:25:05 2023
+f: 2|fff: 4
+
