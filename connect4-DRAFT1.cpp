@@ -970,7 +970,6 @@ void printWinner(bool& player1Turn, int& row, int& col, char gameArray[6][7],
         Player& player1, Player& player2) {
         if (player1Turn == false) {
             player1.score++;
-            // place playerLog filestream
             cout << endl;
             cout << "\t\t\t\t\t\t---------------------------------------------------------\n\n";
             cout << "\033[1;32m\t\t\t\t\t\t\t\t\t" << player1.nickname << " wins!\033[0m\n"; 
@@ -983,7 +982,6 @@ void printWinner(bool& player1Turn, int& row, int& col, char gameArray[6][7],
         
         else {
             player2.score++;
-            // place playerLog filestream
             cout << endl;
             cout << "\t\t\t\t\t\t---------------------------------------------------------\n\n";
             cout << "\033[1;33m\t\t\t\t\t\t\t\t\t" << player2.nickname << " wins!\033[0m\n";
@@ -1055,7 +1053,7 @@ void playerLog(Player& player1, Player& player2) {
 
     ofstream logPlayerScores;
 
-    logPlayerScores.open("C:\\Users\\pacet\\OneDrive\\Documents\\GitHub\\cpl2-language\\own-files\\Game\\playerLog.txt", ios::app);
+    logPlayerScores.open("C:\\Users\\pacet\\OneDrive\\Documents\\GitHub\\connect4\\playerLog.txt", ios::app);
 
     // appending to file
     if (!logPlayerScores.is_open()) {
@@ -1170,7 +1168,7 @@ void sub_FB() {
 
         else {
             // accessing feedback.txt file
-            feedbackOutFile.open("C:\\Users\\pacet\\OneDrive\\Documents\\GitHub\\cpl2-language\\own-files\\Game\\playerFeedback.txt", ios::app);
+            feedbackOutFile.open("C:\\Users\\pacet\\OneDrive\\Documents\\GitHub\\connect4\\playerFeedback.txt", ios::app);
 
             // appending to file
             if (!feedbackOutFile.is_open()) {
