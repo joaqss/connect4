@@ -320,12 +320,6 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
         if (player1Turn == true) {
             printBoard(row, col, gameArray);
 
-            cout << gameArrayColMoves[0] << gameArrayColMoves[1] << gameArrayColMoves[2] << 
-            gameArrayColMoves[3] << gameArrayColMoves[4] << gameArrayColMoves[5] << gameArrayColMoves[6] << endl;
-
-            cout << gameArrayIterate[0] << gameArrayIterate[1] << gameArrayIterate[2] << gameArrayIterate[3] <<
-            gameArrayIterate[4] << gameArrayIterate[5] << gameArrayIterate[6];
-
             cout << "\033[1;32m\n\t\t\t\t\t\t\t" << player1.nickname << "[X]'s Turn!\033[0m" << endl; 
             cout << "\t\t\t\t\t\t\tPlease input valid column number: "; 
             cin >> input; cin.ignore(INT_MAX, '\n');
@@ -556,8 +550,8 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     }
 
                 default:
-                    cout << "\n\t\t\t\t\t\t\t\tInvalid input." << endl;
-                    cout << "\t\t\t\t\t\t\t\t"; system("pause");
+                    cout << "\n\t\t\t\t\t\t\tInvalid input." << endl;
+                    cout << "\t\t\t\t\t\t"; system("pause");
                     system("cls");
                     break;
 
@@ -568,13 +562,6 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
         // PLAYER 2 TURN
         else {
             printBoard(row, col, gameArray);
-            
-            cout << gameArrayColMoves[0] << gameArrayColMoves[1] << gameArrayColMoves[2] << 
-            gameArrayColMoves[3] << gameArrayColMoves[4] << gameArrayColMoves[5] << gameArrayColMoves[6] << endl;
-
-            cout << gameArrayIterate[0] << gameArrayIterate[1] << gameArrayIterate[2] << gameArrayIterate[3] <<
-            gameArrayIterate[4] << gameArrayIterate[5] << gameArrayIterate[6];
-
 
             cout << "\033[1;33m\n\t\t\t\t\t\t\t" << player2.nickname << "[O]'s Turn!\033[0m" << endl;
             cout << "\t\t\t\t\t\t\tPlease input valid column number: "; cin >> input; cin.ignore(INT_MAX, '\n');
@@ -805,8 +792,8 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     }
 
                 default:
-                    cout << "\n\t\t\t\t\t\t\t\tInvalid input." << endl;
-                    cout << "\t\t\t\t\t\t\t\t"; system("pause");
+                    cout << "\n\t\t\t\t\t\t\tInvalid input." << endl;
+                    cout << "\t\t\t\t\t\t\t"; system("pause");
                     system("cls");
                     break;
 
@@ -874,15 +861,20 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
 
         /////////////////////////////////////////////////////////////////////////////// [CHECK DIAGONALS]
 
+        bool diagonalWinner = false;
+
         // left to right
         for (a = 5; a >= 3; a--) {
             for (b = 0; b <= 3; b++) {
                 if ((gameArray[a][b] == 'X') && (gameArray[a-1][b+1] == 'X') &&
                     (gameArray[a-2][b+2] == 'X') && (gameArray[a-3][b+3] == 'X')) {
-
-                        hasWinner = true;
-                        printWinner(player1Turn, row, col, gameArray, player1, player2);
-                        break;
+                        
+                        if (diagonalWinner == false) {
+                            hasWinner = true;
+                            diagonalWinner = true;
+                            printWinner(player1Turn, row, col, gameArray, player1, player2);
+                            break;
+                        }
 
                 }
                 
@@ -891,9 +883,12 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                 if ((gameArray[a][b] == 'O') && (gameArray[a-1][b+1] == 'O') &&
                     (gameArray[a-2][b+2] == 'O') && (gameArray[a-3][b+3] == 'O')) {
 
-                        hasWinner = true;
-                        printWinner(player1Turn, row, col, gameArray, player1, player2);
-                        break;
+                        if (diagonalWinner == false) {
+                            hasWinner = true;
+                            diagonalWinner = true;
+                            printWinner(player1Turn, row, col, gameArray, player1, player2);
+                            break;
+                        }
 
                 }
             }
@@ -905,9 +900,12 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                 if ((gameArray[a][b] == 'X') && (gameArray[a-1][b-1] == 'X') &&
                     (gameArray[a-2][b-2] == 'X') && (gameArray[a-3][b-3] == 'X')) {
 
-                        hasWinner = true;
-                        printWinner(player1Turn, row, col, gameArray, player1, player2);
-                        break;
+                        if (diagonalWinner == false) {
+                            hasWinner = true;
+                            diagonalWinner = true;
+                            printWinner(player1Turn, row, col, gameArray, player1, player2);
+                            break;
+                        }
 
                 }
                 
@@ -916,10 +914,12 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                 if ((gameArray[a][b] == 'O') && (gameArray[a-1][b-1] == 'O') &&
                     (gameArray[a-2][b-2] == 'O') && (gameArray[a-3][b-3] == 'O')) {
 
-                        hasWinner = true;
-                        printWinner(player1Turn, row, col, gameArray, player1, player2);
-                        break;
-
+                        if (diagonalWinner == false) {
+                            hasWinner = true;
+                            diagonalWinner = true;
+                            printWinner(player1Turn, row, col, gameArray, player1, player2);
+                            break;
+                        }
                 }
             }
         } // end of diagonals (r-l)
@@ -1006,7 +1006,7 @@ void continueGame(bool& continueLP, bool& hasWinner, int& row, int& col, char ga
                 << "\t\t\t\t\t| |__| (_) | | | | |_| | | | | |_| |  __/  |_| " << endl 
                 << "\t\t\t\t\t \\____\\___/|_| |_|\\__|_|_| |_|\\__,_|\\___|  (_)" << endl;
         
-        cout << "\n\n\t\t\t\t\tDo you want another game? [Y/N]: "; cin >> decideLP; cin.ignore();
+        cout << "\n\n\t\t\t\t\tDo you want another game? [Y/N]: "; cin >> decideLP; cin.ignore(INT_MAX, '\n');
 
         if (decideLP == 'N' || decideLP == 'n') {
             continueLP = false;
@@ -1133,7 +1133,7 @@ void sub_ABT() {
     
     cout << "\n\t\t\t\t\t The Connect4 project, developed in the C++ language, is the brainchild of \e[1mJoaquin Paolo Pacete\e[0m, a student \n"
             "\t\t\t\t\t enrolled in CpE231. This undertaking represents a significant milestone in the fulfillment of the Finals  \n"
-            "\t\t\t\t\t 'for the course Programming Logic and Design', overseen by the esteemed Professor Einstein D. Yong." << endl;
+            "\t\t\t\t\t for the course 'Programming Logic and Design', overseen by the esteemed Professor Einstein D. Yong." << endl;
 
     cout << "\n\t\t\t\t\t Through this project, Joaquin showcases proficiency in both C++ programming and logical design, delivering \n"
             "\t\t\t\t\t an interactive and engaging rendition of the classic Connect Four game." << endl;
@@ -1144,6 +1144,11 @@ void sub_ABT() {
 
 // FEEDBACK OPTION
 void sub_FB() {
+
+    char feedbackInput[200];
+    ofstream feedbackOutFile;
+
+    do {
     cout << "\n\n\n";
     cout << "\t\t\t\t\t _____             _ _                _    " << endl
         << "\t\t\t\t\t|  ___|__  ___  __| | |__   __ _  ___| | __" << endl
@@ -1154,16 +1159,21 @@ void sub_FB() {
         << "\t\t\t\t\t\t" << "We'd like to know your side." << endl; 
 
     // input file stream here (ifstream)
-    char feedbackInput[200];
-    ofstream feedbackOutFile;
-    
-    do {
+
         cout << "\n\n\t\t\e[1mType here (Up to 150 characters only): \e[0m"; 
         cin.getline(feedbackInput, sizeof(feedbackInput));
 
         if (strlen(feedbackInput) > 150) {
-            cout << "You have entered more than 150 characters." << endl;
-            cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignores all characters exceeding 150
+            cout << "\n\t\tYou have entered more than 150 characters. Press \e[1mENTER\e[0m to continue." << endl;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignores all characters exceeding 150
+            system("cls");
+        }
+
+        else if (strlen(feedbackInput) == 0) {
+            cout << "\n\t\tInput is empty. Press \e[1mENTER\e[0m to continue." << endl;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignores all characters exceeding 150
+            system("cls");
+
         }
 
         else {
@@ -1186,7 +1196,7 @@ void sub_FB() {
             system("cls");
         }
 
-    } while (strlen(feedbackInput) > 150);
+    } while (strlen(feedbackInput) > 150 || strlen(feedbackInput) == 0);
     
 }
 

@@ -1,11 +1,3 @@
-FEEDBACK: hello
-
-FEEDBACK: hello feedback 2
-
-FEEDBACK: l
-
-FEEDBACK: hello
-
 FEEDBACK: please debug the game.
 
 FEEDBACK: just a feedback test.
@@ -22,7 +14,7 @@ FEEDBACK: SHEEEEESSSHHHHHHHHH 10 stars
 
 FEEDBACK: debug nalang lods.
 
-FEEDBACK: napindot lang
-
 FEEDBACK: testing the new file path of the feedback.
+
+FEEDBACK: feedback has been debugged!! 88888
 
