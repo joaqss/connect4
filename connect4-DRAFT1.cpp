@@ -20,6 +20,7 @@ using namespace std;
 struct Player {
     char nickname[30];
     int score;
+    char powerUp[2] = {'b', 'w'};
 };
 
 void titleScreen();
@@ -141,7 +142,9 @@ void playerInfo(Player& player1, Player& player2) {
 // HOME SCREEN
 void homeScreen(char& optionHomeScreen, Player& player1, Player& player2) {
     // Connect 4 ASCII Display
+
     cout << endl << endl << endl << endl << endl << endl << endl << endl << endl;
+    
     cout << "\e[1m\t\t\t\t\t  ____                            _     _  _   _ \e[0m" << endl
          << "\e[1m\t\t\t\t\t / ___|___  _ __  _ __   ___  ___| |_  | || | | |\e[0m" << endl
          << "\e[1m\t\t\t\t\t| |   / _ \\| '_ \\| '_ \\ / _ \\/ __| __| | || |_| |\e[0m" << endl
@@ -159,6 +162,7 @@ void homeScreen(char& optionHomeScreen, Player& player1, Player& player2) {
          << "\t\t\t\t\t\t\e[1m[F]\e[0meedback\n"
          << "\t\t\t\t\t\t\e[1m[E]\e[0mxit" << endl;
     
+
     cout << "\n\n\t\t\t\t\t\tEnter option here: "; cin >> optionHomeScreen; cin.ignore(INT_MAX, '\n');
 }
 
@@ -190,9 +194,8 @@ void sub_LP(Player& player1, Player& player2) {
     int gameArrayColMoves[7] = {0,0,0,0,0,0,0};
     int row, col; // declaration for displaying the 2D array
 
-     // put random variable here
-        
-    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     // Loop for "Let's Play" Option
     do {
         // input option for decide player1
@@ -551,7 +554,7 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
 
                 default:
                     cout << "\n\t\t\t\t\t\t\tInvalid input." << endl;
-                    cout << "\t\t\t\t\t\t"; system("pause");
+                    cout << "\t\t\t\t\t\t\t"; system("pause");
                     system("cls");
                     break;
 
@@ -924,7 +927,7 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
             }
         } // end of diagonals (r-l)
 
-        if (moves == 42 && !hasWinner) {
+        if (moves == 42 && hasWinner == false) {
             cout << endl;
             cout << "\t\t\t\t\t\t---------------------------------------------------------\n\n";
             cout << "\t\t\t\t\t\t\t\t\t" << "\e[1mIt's a draw!\e[0m\n";
