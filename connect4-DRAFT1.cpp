@@ -20,7 +20,9 @@ using namespace std;
 struct Player {
     char nickname[30];
     int score;
-    char powerUp[2] = {'b', 'w'};
+    char powerUp[2][10] = {"[W]hiten", "[B]lock"};
+    char powerUpPlaceHolder[2] = {'w', 'b'};
+    int blockMoves = 2;
 };
 
 void titleScreen();
@@ -32,7 +34,9 @@ void homeScreen(char& optionHomeScreen, Player& player1, Player& player2);
                     int gameArrayIterate[7], int gameArrayColMoves[7], int& moves, char& player1Pick, 
                     char& player2Pick, bool& hasWinner, int& row, int& col, char& input);
 
-        void printBoard(int& row, int& col, char gameArray[6][7]);
+        void blockPowerUp(bool& player1Turn, bool& player2Turn, Player& player1, Player& player2, int& moves);
+
+        void printBoard(int& row, int& col, char gameArray[6][7], Player& player1, Player& player2);
 
         void printWinner(bool& player1Turn, int& row, int& col, 
                         char gameArray[6][7], Player& player1, Player& player2);
@@ -321,10 +325,11 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
 
         // PLAYER 1 TURN
         if (player1Turn == true) {
-            printBoard(row, col, gameArray);
+            printBoard(row, col, gameArray, player1, player2);
 
             cout << "\033[1;32m\n\t\t\t\t\t\t\t" << player1.nickname << "[X]'s Turn!\033[0m" << endl; 
-            cout << "\t\t\t\t\t\t\tPlease input valid column number: "; 
+            cout << "\t\t\t\t\t\t\tPower-ups: \e[1m" << player1.powerUp[0] << "\e[0m | \e[1m" << player1.powerUp[1] << "\e[0m"<< endl;
+            cout << "\t\t\t\t\t\t\tPlease input valid column number/Power-up: "; 
             cin >> input; cin.ignore(INT_MAX, '\n');
 
             switch(input) {
@@ -338,23 +343,19 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[0]+1][0] == 'X' || gameArray[gameArrayIterate[0]+1][0] == 'O') {
                             gameArray[gameArrayIterate[0]][0] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                        
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[0]--;
                             gameArrayColMoves[0]++;
-                            system("cls");
                             break;
+                            
                         }
 
                         else {
                             gameArray[5][0] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[0]--;
                             gameArrayColMoves[0]++;
-                            system("cls");
                             break;
                         }
                     }
@@ -370,23 +371,17 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[1]+1][1] == 'X' || gameArray[gameArrayIterate[1]+1][1] == 'O') {
                             gameArray[gameArrayIterate[1]][1] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[1]--;
                             gameArrayColMoves[1]++;
-                            system("cls");
                             break;
                         }
 
                         else {
                             gameArray[5][1] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[1]--;
                             gameArrayColMoves[1]++;
-                            system("cls");
                             break;
                         }
                     }
@@ -402,24 +397,18 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[2]+1][2] == 'X' || gameArray[gameArrayIterate[2]+1][2] == 'O') {
                             gameArray[gameArrayIterate[2]][2] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[2]--;
                             gameArrayColMoves[2]++;
-                            system("cls");
                             break;
                         }
 
 
                         else {
                             gameArray[5][2] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[2]--;
                             gameArrayColMoves[2]++;
-                            system("cls");
                             break;
                         }
                     }
@@ -435,23 +424,17 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[3]+1][3] == 'X' || gameArray[gameArrayIterate[3]+1][3] == 'O') {
                             gameArray[gameArrayIterate[3]][3] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[3]--;
                             gameArrayColMoves[3]++;
-                            system("cls");
                             break;
                         }
 
                         else {
                             gameArray[5][3] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[3]--;
                             gameArrayColMoves[3]++;
-                            system("cls");
                             break;
                         }
                     }
@@ -467,23 +450,17 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[4]+1][4] == 'X' || gameArray[gameArrayIterate[4]+1][4] == 'O') {
                             gameArray[gameArrayIterate[4]][4] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[4]--;
                             gameArrayColMoves[4]++;
-                            system("cls");
                             break;
                         }
 
                         else {
                             gameArray[5][4] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[4]--;
                             gameArrayColMoves[4]++;
-                            system("cls");
                             break;
                         }
                     }
@@ -499,23 +476,17 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[5]+1][5] == 'X' || gameArray[gameArrayIterate[5]+1][5] == 'O') {
                             gameArray[gameArrayIterate[5]][5] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[5]--;
                             gameArrayColMoves[5]++;
-                            system("cls");
                             break;
                         }
 
                         else {
                             gameArray[5][5] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[5]--;
                             gameArrayColMoves[5]++;
-                            system("cls");
                             break;
                         }
                     }
@@ -531,25 +502,58 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[6]+1][6] == 'X' || gameArray[gameArrayIterate[6]+1][6] == 'O') {
                             gameArray[gameArrayIterate[6]][6] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[6]--;
                             gameArrayColMoves[6]++;
-                            system("cls");
                             break;
                         }
 
                         else {
                             gameArray[5][6] = player1Pick;
-                            player1Turn = false;
-                            player2Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[6]--;
                             gameArrayColMoves[6]++;
-                            system("cls");
                             break;
                         }
+                    }
+
+                case 'W':
+                case 'w':
+                    if (player1.powerUp[0][1] == 'W') {
+                        player1Turn = false;
+                        player2Turn = true;
+                        // player1.powerUp[0] = "-";
+                        strcpy(player1.powerUp[0], "-");
+                        player1.powerUpPlaceHolder[0] = '-';
+                        system("cls");
+                        break;
+                    }
+
+                    else {
+                        cout << "\n\n\t\t\t\t\t\t\tPower-up has been used. ";
+                        system("pause");
+                        system("cls");
+                        break;
+                    }
+                
+                case 'B':
+                case 'b':
+                    if (player1.powerUp[1][1] == 'B') {
+                        player1Turn = true;
+                        player2Turn = false;
+                        player1.blockMoves = 1;
+                        // player1.powerUp[0] = "-";
+                        strcpy(player1.powerUp[1], "-");
+                        player1.powerUpPlaceHolder[1] = '-';
+                        system("cls");
+                        break;
+                    }
+
+                    else {
+                        cout << "\n\n\t\t\t\t\t\t\tPower-up has been used. ";
+                        system("pause");
+                        system("cls");
+                        break;
                     }
 
                 default:
@@ -564,10 +568,11 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
 
         // PLAYER 2 TURN
         else {
-            printBoard(row, col, gameArray);
+            printBoard(row, col, gameArray, player1, player2);
 
             cout << "\033[1;33m\n\t\t\t\t\t\t\t" << player2.nickname << "[O]'s Turn!\033[0m" << endl;
-            cout << "\t\t\t\t\t\t\tPlease input valid column number: "; cin >> input; cin.ignore(INT_MAX, '\n');
+            cout << "\t\t\t\t\t\t\tPower-ups: \e[1m" << player2.powerUp[0] << "\e[0m | \e[1m" << player2.powerUp[1] << "\e[0m"<< endl;
+            cout << "\t\t\t\t\t\t\tPlease input valid column number/Power-up: "; cin >> input; cin.ignore(INT_MAX, '\n');
 
             // column no. checker
             switch(input) {
@@ -582,23 +587,17 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[0]+1][0] == 'X' || gameArray[gameArrayIterate[0]+1][0] == 'O') {
                             gameArray[gameArrayIterate[0]][0] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[0]--;
                             gameArrayColMoves[0]++;
-                            system("cls");
                             break;
                         }
 
                         else {
                             gameArray[5][0] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[0]--;
                             gameArrayColMoves[0]++;
-                            system("cls");
                             break;
                         }                           
                     }
@@ -614,23 +613,17 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[1]+1][1] == 'X' || gameArray[gameArrayIterate[1]+1][1] == 'O') {
                             gameArray[gameArrayIterate[1]][1] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[1]--;
                             gameArrayColMoves[1]++;
-                            system("cls");
                             break;
                         }
 
                         else {
                             gameArray[5][1] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[1]--;
                             gameArrayColMoves[1]++;
-                            system("cls");
                             break;
                         }
                     }
@@ -646,23 +639,17 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[2]+1][2] == 'X' || gameArray[gameArrayIterate[2]+1][2] == 'O') {
                             gameArray[gameArrayIterate[2]][2] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[2]--;
                             gameArrayColMoves[2]++;
-                            system("cls");
                             break;
                         }
 
                         else {
                             gameArray[5][2] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[2]--;
                             gameArrayColMoves[2]++;
-                            system("cls");
                             break;
                         }
                     }
@@ -677,23 +664,17 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[3]+1][3] == 'X' || gameArray[gameArrayIterate[3]+1][3] == 'O') {
                             gameArray[gameArrayIterate[3]][3] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[3]--;
                             gameArrayColMoves[3]++;
-                            system("cls");
                             break;
                         }
 
                         else {
                             gameArray[5][3] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[3]--;
                             gameArrayColMoves[3]++;
-                            system("cls");
                             break;
                         }
                     }
@@ -709,23 +690,17 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[4]+1][4] == 'X' || gameArray[gameArrayIterate[4]+1][4] == 'O') {
                             gameArray[gameArrayIterate[4]][4] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[4]--;
                             gameArrayColMoves[4]++;
-                            system("cls");
                             break;
                         }
 
                         else {
                             gameArray[5][4] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[4]--;
                             gameArrayColMoves[4]++;
-                            system("cls");
                             break;
                         }
                     }
@@ -741,23 +716,17 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[5]+1][5] == 'X' || gameArray[gameArrayIterate[5]+1][5] == 'O') {
                             gameArray[gameArrayIterate[5]][5] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[5]--;
                             gameArrayColMoves[5]++;
-                            system("cls");
                             break;
                         }
 
                         else {
                             gameArray[5][5] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[5]--;
                             gameArrayColMoves[5]++;
-                            system("cls");
                             break;
                         }
                     }
@@ -773,25 +742,57 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                     else {
                         if (gameArray[gameArrayIterate[6]+1][6] == 'X' || gameArray[gameArrayIterate[6]+1][6] == 'O') {
                             gameArray[gameArrayIterate[6]][6] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[6]--;
                             gameArrayColMoves[6]++;
-                            system("cls");
                             break;
                         }
 
                         else {
                             gameArray[5][6] = player2Pick;
-                            player2Turn = false;
-                            player1Turn = true;
-                            moves++;
+                            blockPowerUp(player1Turn, player2Turn, player1, player2, moves);
                             gameArrayIterate[6]--;
                             gameArrayColMoves[6]++;
-                            system("cls");
                             break;
                         }
+                    }
+                
+                case 'W':
+                case 'w':
+                    if (player2.powerUp[0][1] == 'W') {
+                        player2Turn = false;
+                        player1Turn = true;
+                        // player2.powerUp[0] = "-";
+                        strcpy(player2.powerUp[0], "-");
+                        player2.powerUpPlaceHolder[0] = '-';
+                        system("cls");
+                        break;
+                    }
+
+                    else {
+                        cout << "\n\n\t\t\t\t\t\t\tPower-up has been used. ";
+                        system("pause");
+                        system("cls");
+                        break;
+                    }
+                
+                case 'B':
+                case 'b':
+                    if (player2.powerUp[1][1] == 'B') {
+                        player2Turn = true;
+                        player1Turn = false;
+                        player2.blockMoves = 1;
+                        strcpy(player2.powerUp[1], "-");
+                        player2.powerUpPlaceHolder[1] = '-';
+                        system("cls");
+                        break;
+                    }
+
+                    else {
+                        cout << "\n\n\t\t\t\t\t\t\tPower-up has been used. ";
+                        system("pause");
+                        system("cls");
+                        break;
                     }
 
                 default:
@@ -934,7 +935,7 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
             cout << "\t\t\t\t\t\t\t\t\t" << player1.nickname << "'s Score: " << player1.score << endl;
             cout << "\t\t\t\t\t\t\t\t\t" << player2.nickname << "'s Score: " << player2.score;
             cout << "\n\n\t\t\t\t\t\t---------------------------------------------------------\n";
-            printBoard(row, col, gameArray);
+            printBoard(row, col, gameArray, player1, player2);
             cout << "\n\t\t\t\t\t\t\t\t"; system("pause"); system("cls"); 
             hasWinner = true; // just for the sake to end the game...
             break;
@@ -944,7 +945,66 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
 
 }
 
-void printBoard(int& row, int& col, char gameArray[6][7]) {
+void blockPowerUp(bool& player1Turn, bool& player2Turn, Player& player1, Player& player2, int& moves) {
+
+    if (player1Turn == true && player2Turn == false) {
+        if (player1.blockMoves != 2) {
+            player1Turn = true;
+            player2Turn = false;
+            player1.blockMoves++;
+            moves++;
+            player1.powerUpPlaceHolder[0] = 'w'; player2.powerUpPlaceHolder[0] = 'w'; // to show the color after turn
+            system("cls");
+        }
+
+        else {
+            player1Turn = false;
+            player2Turn = true;
+            moves++;
+            player1.powerUpPlaceHolder[0] = 'w'; player2.powerUpPlaceHolder[0] = 'w'; // to show the color after turn
+            system("cls");
+        }
+    }
+
+    else {
+        if (player2.blockMoves != 2) {
+            player2Turn = true;
+            player1Turn = false;
+            player2.blockMoves++;
+            moves++;
+            player1.powerUpPlaceHolder[0] = 'w'; player2.powerUpPlaceHolder[0] = 'w'; // to show the color after turn
+            system("cls");
+        }
+
+        else {
+            player2Turn = false;
+            player1Turn = true;
+            moves++;
+            player1.powerUpPlaceHolder[0] = 'w'; player2.powerUpPlaceHolder[0] = 'w'; // to show the color after turn
+            system("cls");
+        }
+    }
+}
+
+void printBoard(int& row, int& col, char gameArray[6][7], Player& player1, Player& player2) {
+
+    // this will run after assigning the char '-' to w of player1/player2
+    if (player1.powerUpPlaceHolder[0] == '-' || player2.powerUpPlaceHolder[0] == '-') {
+        cout << "\n\t\t\t\t\t\t----1-------2-------3-------4-------5-------6-------7----\n";
+        for (row = 0; row < 6; row++) {
+            cout << "\n\t\t\t\t\t\t|   ";
+
+            for (col = 0; col < 7; col++) {
+                cout << gameArray[row][col] << "   |   ";
+            }
+            cout << "\n\t\t\t\t\t\t---------------------------------------------------------";
+            cout << endl;
+
+        }
+
+    }
+
+    else {
         cout << "\n\t\t\t\t\t\t----1-------2-------3-------4-------5-------6-------7----\n";
         for (row = 0; row < 6; row++) {
             cout << "\n\t\t\t\t\t\t|   ";
@@ -967,6 +1027,7 @@ void printBoard(int& row, int& col, char gameArray[6][7]) {
             cout << "\n\t\t\t\t\t\t---------------------------------------------------------";
             cout << endl;
         }
+    }
 }
 
 void printWinner(bool& player1Turn, int& row, int& col, char gameArray[6][7], 
@@ -979,7 +1040,7 @@ void printWinner(bool& player1Turn, int& row, int& col, char gameArray[6][7],
             cout << "\t\t\t\t\t\t\t\t\t" << player1.nickname << "'s Score: " << player1.score << endl;
             cout << "\t\t\t\t\t\t\t\t\t" << player2.nickname << "'s Score: " << player2.score;
             cout << "\n\n\t\t\t\t\t\t---------------------------------------------------------\n";
-            printBoard(row, col, gameArray);
+            printBoard(row, col, gameArray, player1, player2);
             cout << "\n\t\t\t\t\t\t\t\t"; system("pause"); system("cls");
         }
         
@@ -991,7 +1052,7 @@ void printWinner(bool& player1Turn, int& row, int& col, char gameArray[6][7],
             cout << "\t\t\t\t\t\t\t\t\t" << player1.nickname << "'s Score: " << player1.score << endl;
             cout << "\t\t\t\t\t\t\t\t\t" << player2.nickname << "'s Score: " << player2.score;
             cout << "\n\n\t\t\t\t\t\t---------------------------------------------------------\n";
-            printBoard(row, col, gameArray);
+            printBoard(row, col, gameArray, player1, player2);
             cout << "\n\t\t\t\t\t\t\t\t"; system("pause"); system("cls"); 
         }        
 }
@@ -1013,13 +1074,19 @@ void continueGame(bool& continueLP, bool& hasWinner, int& row, int& col, char ga
 
         if (decideLP == 'N' || decideLP == 'n') {
             continueLP = false;
-            playerLog(player1, player2);
-            system("cls");
-            break;
-        }
+            playerLog(player1, player2); // log player info
 
-        else if (decideLP == 'Y' || decideLP == 'y') {
+            // reset moves
             moves = 0;
+            
+            // reset blockmoves
+            player1.blockMoves = 2;  player2.blockMoves = 2; 
+
+            // reset powerups
+            strcpy(player1.powerUp[0], "[W]hiten"); strcpy(player2.powerUp[0], "[W]hiten"); // whiten powerup
+            strcpy(player1.powerUp[1], "[B]lock"); strcpy(player2.powerUp[1], "[B]lock"); // block powerup
+
+            // reset bool
             hasWinner = false;
 
             // reset gameArray
@@ -1036,7 +1103,37 @@ void continueGame(bool& continueLP, bool& hasWinner, int& row, int& col, char ga
                 gameArrayColMoves[reset] = 0;
             }
 
-            // score adding for player
+            system("cls");
+            break;
+        }
+
+        else if (decideLP == 'Y' || decideLP == 'y') {
+            // reset moves
+            moves = 0;
+            
+            // reset blockmoves
+            player1.blockMoves = 2;  player2.blockMoves = 2; 
+
+            // reset powerups
+            strcpy(player1.powerUp[0], "[W]hiten"); strcpy(player2.powerUp[0], "[W]hiten"); // whiten powerup
+            strcpy(player1.powerUp[1], "[B]lock"); strcpy(player2.powerUp[1], "[B]lock"); // block powerup
+
+            // reset bool
+            hasWinner = false;
+
+            // reset gameArray
+            for (row = 0; row < 6; row++) {
+                for (col = 0; col < 7; col++) {
+                    gameArray[row][col] = '-';
+                }
+            }
+            
+            // reset gameArrayIterate and Moves
+            int reset;
+            for (reset = 0; reset < 7; reset++) {
+                gameArrayIterate[reset] = 5;
+                gameArrayColMoves[reset] = 0;
+            }
             
             system("cls");
             break;
@@ -1095,6 +1192,12 @@ void sub_GM() {
             "\t\t\t\t\t of the game mechanics, players are able to enter their nicknames before starting to determine \n"
             "\t\t\t\t\t player one and player two. They may choose who will be the first one to draw. However, they \n"
             "\t\t\t\t\t may also choose the random feature that will let the game decide who will be the first to draw. \n"
+
+            "\n\t\t\t\t\t\e[1m [MUST READ] \e[0m \n"
+            "\t\t\t\t\t The unique thing is that this game contains power-ups. If player chooses [W]hiten, the color of \n"
+            "\t\t\t\t\t of the board will turn white for the next player that will be drawing. Then, it will go back to \n"
+            "\t\t\t\t\t a colored bored after drawing. On the other hand, choosing [B]lock will block the other player \n"
+            "\t\t\t\t\t from drawing his pick. This means that the player who used this power-up will draw 2 times. \n"
             "\t\t\t\t\t The first one to connect slots vertically, horizontally, or diagonally wins." << endl;
 
     cout << "\n\t\t\t\t\t "; system("pause");
