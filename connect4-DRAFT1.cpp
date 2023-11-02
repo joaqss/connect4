@@ -29,23 +29,16 @@ void titleScreen();
 void playerInfo(Player& player1, Player& player2);
 void homeScreen(char& optionHomeScreen, Player& player1, Player& player2);
     void sub_LP(Player& player1, Player& player2);
-
         void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& player2, char gameArray[6][7],
                     int gameArrayIterate[7], int gameArrayColMoves[7], int& moves, char& player1Pick, 
                     char& player2Pick, bool& hasWinner, int& row, int& col, char& input);
-
         void blockPowerUp(bool& player1Turn, bool& player2Turn, Player& player1, Player& player2, int& moves);
-
         void printBoard(int& row, int& col, char gameArray[6][7], Player& player1, Player& player2);
-
         void printWinner(bool& player1Turn, int& row, int& col, 
                         char gameArray[6][7], Player& player1, Player& player2);
-
         void continueGame(bool& continueLP, bool& hasWinner, int& row, int& col, 
                         char gameArray[6][7], int& moves, int gameArrayIterate[7], int gameArrayColMoves[7], Player& player1, Player& player2);
-        
         void playerLog(Player& player1, Player& player2);
-        
     void sub_GM();
     void sub_ABT();
     void sub_FB();
@@ -60,6 +53,7 @@ int main() {
     titleScreen();
     system("cls");
 
+    // Main Do-While Loop for Home Page
     do {
         playerInfo(player1, player2); //run player info 
 
@@ -173,6 +167,8 @@ void homeScreen(char& optionHomeScreen, Player& player1, Player& player2) {
 // LETS PLAY OPTION
 void sub_LP(Player& player1, Player& player2) {
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
     bool continueLP = true;
     bool player1Turn = false;
     bool player2Turn = false;
@@ -181,7 +177,7 @@ void sub_LP(Player& player1, Player& player2) {
     player1.score = 0;
     player2.score = 0;
     
-    char input;
+    char input; // user input
     char player1Pick = 'X';
     char player2Pick = 'O';
     char gameArray[6][7] = {
@@ -191,11 +187,11 @@ void sub_LP(Player& player1, Player& player2) {
         '-', '-', '-', '-', '-', '-', '-', 
         '-', '-', '-', '-', '-', '-', '-', 
         '-', '-', '-', '-', '-', '-', '-'
-    };
+    }; // game board
 
     int moves = 0; // at max 42 moves
-    int gameArrayIterate[7] = {5,5,5,5,5,5,5};
-    int gameArrayColMoves[7] = {0,0,0,0,0,0,0};
+    int gameArrayIterate[7] = {5,5,5,5,5,5,5}; // to check if previous slot is full and put the pick on top instead
+    int gameArrayColMoves[7] = {0,0,0,0,0,0,0}; // to check if columns are full
     int row, col; // declaration for displaying the 2D array
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -873,6 +869,7 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                 if ((gameArray[a][b] == 'X') && (gameArray[a-1][b+1] == 'X') &&
                     (gameArray[a-2][b+2] == 'X') && (gameArray[a-3][b+3] == 'X')) {
                         
+                        // to cancel other diagonal patterns
                         if (diagonalWinner == false) {
                             hasWinner = true;
                             diagonalWinner = true;
@@ -886,7 +883,8 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
 
                 if ((gameArray[a][b] == 'O') && (gameArray[a-1][b+1] == 'O') &&
                     (gameArray[a-2][b+2] == 'O') && (gameArray[a-3][b+3] == 'O')) {
-
+                        
+                        // to cancel other diagonal patterns
                         if (diagonalWinner == false) {
                             hasWinner = true;
                             diagonalWinner = true;
@@ -904,6 +902,7 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
                 if ((gameArray[a][b] == 'X') && (gameArray[a-1][b-1] == 'X') &&
                     (gameArray[a-2][b-2] == 'X') && (gameArray[a-3][b-3] == 'X')) {
 
+                        // to cancel other diagonal patterns
                         if (diagonalWinner == false) {
                             hasWinner = true;
                             diagonalWinner = true;
@@ -928,6 +927,7 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
             }
         } // end of diagonals (r-l)
 
+        // DRAW
         if (moves == 42 && hasWinner == false) {
             cout << endl;
             cout << "\t\t\t\t\t\t---------------------------------------------------------\n\n";
@@ -945,6 +945,7 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
 
 }
 
+// For block power up; if not activated, it will just run the else statement.
 void blockPowerUp(bool& player1Turn, bool& player2Turn, Player& player1, Player& player2, int& moves) {
 
     if (player1Turn == true && player2Turn == false) {
@@ -1148,7 +1149,7 @@ void continueGame(bool& continueLP, bool& hasWinner, int& row, int& col, char ga
     } while ((decideLP != 'Y' || decideLP != 'y') && (decideLP != 'N' || decideLP != 'n'));
 }
 
-// PLAYER LOG
+// PLAYER LOG [BACKEND]
 void playerLog(Player& player1, Player& player2) {
 
     ofstream logPlayerScores;
