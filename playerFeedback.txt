@@ -18,3 +18,16 @@ FEEDBACK: feedback has been debugged!! 88888
 
 FEEDBACK: debug the code.
 
+FEEDBACK: hello?
+
+FEEDBACK: ffffffffff
+
+FEEDBACK: char feedbackInput[300];
+
+FEEDBACK: hello my game is super duper finished.
+
+
+FEEDBACK: This is a feedback test wherein it will check if the filestreaming is working.
+
+FEEDBACK: f
+
