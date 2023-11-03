@@ -1301,7 +1301,7 @@ void sub_FB() {
              << "\t\t\t\t  (_____)                                           (_____)\n"
              << "\t\t\t\t\t\t" << "We'd like to know your side." << endl; 
 
-    // input file stream here (ifstream)
+    // input file stream here (ofstream)
 
         cout << "\n\n\t\t\e[1mType here (Up to 150 characters only): \e[0m"; 
         cin.getline(feedbackInput, sizeof(feedbackInput));
