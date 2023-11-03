@@ -61,7 +61,7 @@ int main() {
         char optionHomeScreen;
 
         while ((optionHomeScreen != 'L' || optionHomeScreen != 'l') && (optionHomeScreen != 'G' || optionHomeScreen != 'g')
-            && (optionHomeScreen != 'H' || optionHomeScreen != 'h') && (optionHomeScreen != 'E' || optionHomeScreen != 'e')) {
+            && (optionHomeScreen != 'A' || optionHomeScreen != 'a') && (optionHomeScreen != 'E' || optionHomeScreen != 'e')) {
             
             homeScreen(optionHomeScreen, player1, player2);
 
@@ -105,34 +105,45 @@ int main() {
 // TITLE SCREEN
 void titleScreen() {
     system("cls");
-    cout << endl << endl << endl << endl << endl << endl << endl << endl << endl;
-    cout << "\e[1m\t\t\t\t\t  ____                            _     _  _   _ \e[0m" << endl
-         << "\e[1m\t\t\t\t\t / ___|___  _ __  _ __   ___  ___| |_  | || | | |\e[0m" << endl
-         << "\e[1m\t\t\t\t\t| |   / _ \\| '_ \\| '_ \\ / _ \\/ __| __| | || |_| |\e[0m" << endl
-         << "\e[1m\t\t\t\t\t| |__| (_) | | | | | | |  __/ (__| |_  |__   _|_|\e[0m" << endl
-         << "\e[1m\t\t\t\t\t \\____\\___/|_| |_|_| |_|\\___|\\___|\\__|    |_| (_)\e[0m" << endl
-         << " " << endl
-         << "\t\t\t\t\t\t\tWelcome to Connect 4!" << endl
+    cout << "\n\n\n\n\t\t>>=========================================================================================<<\n";
+    cout << endl << endl << endl << endl << endl << endl;
+    cout << "\t\t\t\t__| |___________________________________________________| |__\n"
+            "\t\t\t\t__   ___________________________________________________   __\n"
+            "\t\t\t\t  | |                                                   | |  \n"
+            "\t\t\t\t  | |  ____                            _     _  _     _ | |  \n"
+            "\t\t\t\t  | | / ___|___  _ __  _ __   ___  ___| |_  | || |   | || |  \n"
+            "\t\t\t\t  | || |   / _ \\| '_ \\| '_ \\ / _ \\/ __| __| | || |_  | || |  \n"
+            "\t\t\t\t  | || |__| (_) | | | | | | |  __/ (__| |_  |__   _| |_|| |  \n"
+            "\t\t\t\t  | | \\____\\___/|_| |_|_| |_|\\___|\\___|\\__|    |_|   (_)| |  \n"
+            "\t\t\t\t__| |___________________________________________________| |__\n"
+            "\t\t\t\t__   ___________________________________________________   __\n"
+            "\t\t\t\t  | |                                                   | |  \n\n";
+    cout << "\t\t\t\t\t\t   Welcome to Connect 4!" << endl
          << endl << endl;
 
-    cout << "\t\t\t\t\t\t  "; system("pause"); cout << endl; // press any key to continue
+    cout << "\n\n\n\n\t\t>>=========================================================================================<<\n";
+    cout << "\n\t\t\t\t\t     "; system("pause"); cout << endl; // press any key to continue
     cout << endl << endl << endl << endl << endl << endl << endl << endl << endl;
 }
 
 // NICKNAME GET
 void playerInfo(Player& player1, Player& player2) {
-
     cout << "\n\n\n\n"
-         <<"\e[1m\t\t\t _____       _              _   _ _      _                               \e[0m" << endl
-         <<"\e[1m\t\t\t| ____|_ __ | |_ ___ _ __  | \\ | (_) ___| | ___ __   __ _ _ __ ___   ___ \e[0m" << endl
-         <<"\e[1m\t\t\t|  _| | '_ \\| __/ _ \\ '__| |  \\| | |/ __| |/ / '_ \\ / _` | '_ ` _ \\ / _ \\\e[0m" << endl
-         <<"\e[1m\t\t\t| |___| | | | ||  __/ |    | |\\  | | (__|   <| | | | (_| | | | | | |  __/\e[0m" << endl
-         <<"\e[1m\t\t\t|_____|_| |_|\\__\\___|_|    |_| \\_|_|\\___|_|\\_\\_| |_|\\__,_|_| |_| |_|\\___|\e[0m" << endl;
-
-    cout << endl << endl << endl;
+         << "\t\t\t__| |_________________________________________________________________________| |__" << endl
+         << "\t\t\t__   _________________________________________________________________________   __" << endl
+         << "\t\t\t  | |                                                                         | |  " << endl
+         << "\t\t\t  | | _____       _              _   _ _      _                               | |  " << endl
+         << "\t\t\t  | || ____|_ __ | |_ ___ _ __  | \\ | (_) ___| | ___ __   __ _ _ __ ___   ___ | |  " << endl
+         << "\t\t\t  | ||  _| | '_ \\| __/ _ \\ '__| |  \\| | |/ __| |/ / '_ \\ / _` | '_ ` _ \\ / _ \\| |  " << endl
+         << "\t\t\t  | || |___| | | | ||  __/ |    | |\\  | | (__|   <| | | | (_| | | | | | |  __/| |  " << endl
+         << "\t\t\t  | ||_____|_| |_|\\__\\___|_|    |_| \\_|_|\\___|_|\\_\\_| |_|\\__,_|_| |_| |_|\\___|| |  " << endl
+         << "\t\t\t__| |_________________________________________________________________________| |__" << endl
+         << "\t\t\t__   _________________________________________________________________________   __" << endl
+         << "\t\t\t  | |                                                                         | |  " << endl;
+    cout << endl << endl;
     cout << "\033[1;32m\t\t\t\t\t Enter Player 1 Nickname: \033[0m"; cin.getline(player1.nickname, sizeof(player1.nickname));
     cout << endl;
-    cout << "\t\t\t****************************************************************************\n" << endl;
+    cout << "\t\t\t***********************************************************************************\n" << endl;
     cout << "\033[1;33m\t\t\t\t\t Enter Player 2 Nickname: \033[0m"; cin.getline(player2.nickname, sizeof(player2.nickname)); 
     system("cls");
 }
@@ -141,14 +152,20 @@ void playerInfo(Player& player1, Player& player2) {
 void homeScreen(char& optionHomeScreen, Player& player1, Player& player2) {
     // Connect 4 ASCII Display
 
-    cout << endl << endl << endl << endl << endl << endl << endl << endl << endl;
+    cout << "\n\n\n\t\t>>=========================================================================================<<\n";
+    cout << endl << endl << endl << endl << endl;
     
-    cout << "\e[1m\t\t\t\t\t  ____                            _     _  _   _ \e[0m" << endl
-         << "\e[1m\t\t\t\t\t / ___|___  _ __  _ __   ___  ___| |_  | || | | |\e[0m" << endl
-         << "\e[1m\t\t\t\t\t| |   / _ \\| '_ \\| '_ \\ / _ \\/ __| __| | || |_| |\e[0m" << endl
-         << "\e[1m\t\t\t\t\t| |__| (_) | | | | | | |  __/ (__| |_  |__   _|_|\e[0m" << endl
-         << "\e[1m\t\t\t\t\t \\____\\___/|_| |_|_| |_|\\___|\\___|\\__|    |_| (_)\e[0m" << endl
-         << endl << endl;
+    cout << "\t\t\t\t__| |___________________________________________________| |__\n"
+            "\t\t\t\t__   ___________________________________________________   __\n"
+            "\t\t\t\t  | |                                                   | |  \n"
+            "\t\t\t\t  | |  ____                            _     _  _     _ | |  \n"
+            "\t\t\t\t  | | / ___|___  _ __  _ __   ___  ___| |_  | || |   | || |  \n"
+            "\t\t\t\t  | || |   / _ \\| '_ \\| '_ \\ / _ \\/ __| __| | || |_  | || |  \n"
+            "\t\t\t\t  | || |__| (_) | | | | | | |  __/ (__| |_  |__   _| |_|| |  \n"
+            "\t\t\t\t  | | \\____\\___/|_| |_|_| |_|\\___|\\___|\\__|    |_|   (_)| |  \n"
+            "\t\t\t\t__| |___________________________________________________| |__\n"
+            "\t\t\t\t__   ___________________________________________________   __\n"
+            "\t\t\t\t  | |                                                   | |  \n\n";
 
     // Welcome Player Nicknames
     cout << "\t\t\t\t\t\tWelcome, \033[1;32m" << player1.nickname << "\033[0m and \033[1;33m" << player2.nickname << "\033[0m!\n\n" << endl;
@@ -159,9 +176,10 @@ void homeScreen(char& optionHomeScreen, Player& player1, Player& player2) {
          << "\t\t\t\t\t\t\e[1m[A]\e[0mbout\n" 
          << "\t\t\t\t\t\t\e[1m[F]\e[0meedback\n"
          << "\t\t\t\t\t\t\e[1m[E]\e[0mxit" << endl;
-    
 
-    cout << "\n\n\t\t\t\t\t\tEnter option here: "; cin >> optionHomeScreen; cin.ignore(INT_MAX, '\n');
+    cout << "\n\n\n\t\t>>=========================================================================================<<\n";
+    
+    cout << "\n\t\t\t\t\t\tEnter option here: "; cin >> optionHomeScreen; cin.ignore(INT_MAX, '\n');
 }
 
 // LETS PLAY OPTION
@@ -200,12 +218,24 @@ void sub_LP(Player& player1, Player& player2) {
     do {
         // input option for decide player1
         cout << "\n\n\n";   
+
+        cout << "\t\t\t\t _____                                                                          _____ " << endl;
+        cout << "\t\t\t\t( ___ )                                                                        ( ___ )" << endl;
+        cout << "\t\t\t\t |   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|   | " << endl;
+        cout << "\t\t\t\t |   |   ____ _                            _          ____                      |   | " << endl;
+        cout << "\t\t\t\t |   |  / ___| |__   ___   ___  ___  ___  | |_ ___   |  _ \\ _ __ __ ___      __ |   | " << endl;
+        cout << "\t\t\t\t |   | | |   | '_ \\ / _ \\ / _ \\/ __|/ _ \\ | __/ _ \\  | | | | '__/ _` \\ \\ / /  / |   | " << endl;
+        cout << "\t\t\t\t |   | | |___| | | | (_) | (_) \\__ \\  __/ | || (_) | | |_| | | | (_| |\\ V  V /  |   | " << endl;
+        cout << "\t\t\t\t |   |  \\____|_| |_|\\___/ \\___/|___/\\___|  \\__\\___/  |____/|_|  \\__,_| \\_/\\_/   |   | " << endl;
+        cout << "\t\t\t\t |___|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|___| " << endl;
+        cout << "\t\t\t\t(_____)                                                                        (_____) " << endl;
+
         char playerDecide; 
-        cout << "\t\t\t----------------------------------------------------------------------------------------------------------\n\n";
+        cout << "\n\n\n\t\t\t****************************************************************************************************\n\n";
         cout << "\t\t\t\t\t   Who will be drawing first? ( \033[1;32m" << player1.nickname << "[1]\033[0m | \033[1;33m" << player2.nickname << 
             "[2]\033[0m |\e[1m Random[R] \e[0m): "; 
         cin >> playerDecide;
-        cout << "\n\t\t\t----------------------------------------------------------------------------------------------------------\n\n";
+        cout << "\n\t\t\t****************************************************************************************************\n\n";
 
         cin.ignore(INT_MAX, '\n');
         
@@ -251,16 +281,15 @@ void sub_LP(Player& player1, Player& player2) {
             
             switch (randomNumber) {
                 case 1:
-                    cout << "\t\t\t\t\t\tRandom function chose: \033[1;32m" << player1.nickname << "\033[0m";
+                    cout << "\t\t\t\t\t\tSystem chose: \033[1;32m" << player1.nickname << "\033[0m";
                     cout << "\n\n\t\t\t\t\t\t"; system("pause");
                     system("cls");
                     break;
                 case 2:
-                    cout << "\t\t\t\t\t\tRandom function chose: \033[1;33m" << player2.nickname << "\033[0m";
+                    cout << "\t\t\t\t\t\tSystem chose: \033[1;33m" << player2.nickname << "\033[0m";
                     cout << "\n\n\t\t\t\t\t\t"; system("pause");
                     system("cls");
                     break;
-
                 default:
                     cout << "Error.";
                     break;
@@ -325,7 +354,7 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
 
             cout << "\033[1;32m\n\t\t\t\t\t\t\t" << player1.nickname << "[X]'s Turn!\033[0m" << endl; 
             cout << "\t\t\t\t\t\t\tPower-ups: \e[1m" << player1.powerUp[0] << "\e[0m | \e[1m" << player1.powerUp[1] << "\e[0m"<< endl;
-            cout << "\t\t\t\t\t\t\tPlease input valid column number/Power-up: "; 
+            cout << "\n\t\t\t\t\t\t\tPlease input valid column number/Power-up: "; 
             cin >> input; cin.ignore(INT_MAX, '\n');
 
             switch(input) {
@@ -568,7 +597,7 @@ void connect4(bool& player1Turn, bool& player2Turn, Player& player1, Player& pla
 
             cout << "\033[1;33m\n\t\t\t\t\t\t\t" << player2.nickname << "[O]'s Turn!\033[0m" << endl;
             cout << "\t\t\t\t\t\t\tPower-ups: \e[1m" << player2.powerUp[0] << "\e[0m | \e[1m" << player2.powerUp[1] << "\e[0m"<< endl;
-            cout << "\t\t\t\t\t\t\tPlease input valid column number/Power-up: "; cin >> input; cin.ignore(INT_MAX, '\n');
+            cout << "\n\t\t\t\t\t\t\tPlease input valid column number/Power-up: "; cin >> input; cin.ignore(INT_MAX, '\n');
 
             // column no. checker
             switch(input) {
@@ -989,6 +1018,8 @@ void blockPowerUp(bool& player1Turn, bool& player2Turn, Player& player1, Player&
 
 void printBoard(int& row, int& col, char gameArray[6][7], Player& player1, Player& player2) {
 
+    cout << "\n\t\t\t\t>>=====================================================================================<<\n\n";
+
     // this will run after assigning the char '-' to w of player1/player2
     if (player1.powerUpPlaceHolder[0] == '-' || player2.powerUpPlaceHolder[0] == '-') {
         cout << "\n\t\t\t\t\t\t----1-------2-------3-------4-------5-------6-------7----\n";
@@ -1029,6 +1060,8 @@ void printBoard(int& row, int& col, char gameArray[6][7], Player& player1, Playe
             cout << endl;
         }
     }
+
+    cout << "\n\n\t\t\t\t>>=====================================================================================<<\n";
 }
 
 void printWinner(bool& player1Turn, int& row, int& col, char gameArray[6][7], 
@@ -1036,11 +1069,11 @@ void printWinner(bool& player1Turn, int& row, int& col, char gameArray[6][7],
         if (player1Turn == false) {
             player1.score++;
             cout << endl;
-            cout << "\t\t\t\t\t\t---------------------------------------------------------\n\n";
+            cout << "\t\t\t\t\t\t\033[1;32m---------------------------------------------------------\033[0m\n\n";
             cout << "\033[1;32m\t\t\t\t\t\t\t\t\t" << player1.nickname << " wins!\033[0m\n"; 
             cout << "\t\t\t\t\t\t\t\t\t" << player1.nickname << "'s Score: " << player1.score << endl;
             cout << "\t\t\t\t\t\t\t\t\t" << player2.nickname << "'s Score: " << player2.score;
-            cout << "\n\n\t\t\t\t\t\t---------------------------------------------------------\n";
+            cout << "\n\n\t\t\t\t\t\t\033[1;32m---------------------------------------------------------\033[0m\n";
             printBoard(row, col, gameArray, player1, player2);
             cout << "\n\t\t\t\t\t\t\t\t"; system("pause"); system("cls");
         }
@@ -1048,11 +1081,11 @@ void printWinner(bool& player1Turn, int& row, int& col, char gameArray[6][7],
         else {
             player2.score++;
             cout << endl;
-            cout << "\t\t\t\t\t\t---------------------------------------------------------\n\n";
+            cout << "\t\t\t\t\t\t\033[1;33m---------------------------------------------------------\033[0m\n\n";
             cout << "\033[1;33m\t\t\t\t\t\t\t\t\t" << player2.nickname << " wins!\033[0m\n";
             cout << "\t\t\t\t\t\t\t\t\t" << player1.nickname << "'s Score: " << player1.score << endl;
             cout << "\t\t\t\t\t\t\t\t\t" << player2.nickname << "'s Score: " << player2.score;
-            cout << "\n\n\t\t\t\t\t\t---------------------------------------------------------\n";
+            cout << "\n\n\t\t\t\t\t\t\033[1;33m---------------------------------------------------------\033[0m\n";
             printBoard(row, col, gameArray, player1, player2);
             cout << "\n\t\t\t\t\t\t\t\t"; system("pause"); system("cls"); 
         }        
@@ -1231,7 +1264,7 @@ void sub_GM() {
 
 // HELP OPTION
 void sub_ABT() {
-    cout << "\n\n\n";
+    cout << "\n\n\n\n\n";
     cout << "\t\t\t\t\t    _    _                 _     _   _             ____                      " << endl
          << "\t\t\t\t\t   / \\  | |__   ___  _   _| |_  | |_| |__   ___   / ___| __ _ _ __ ___   ___ " << endl
          << "\t\t\t\t\t  / _ \\ | '_ \\ / _ \\| | | | __| | __| '_ \\ / _ \\ | |  _ / _` | '_ ` _ \\ / _ \\" << endl
@@ -1252,18 +1285,21 @@ void sub_ABT() {
 // FEEDBACK OPTION
 void sub_FB() {
 
-    char feedbackInput[200];
+    char feedbackInput[500];
     ofstream feedbackOutFile;
 
     do {
-    cout << "\n\n\n";
-    cout << "\t\t\t\t\t _____             _ _                _    " << endl
-        << "\t\t\t\t\t|  ___|__  ___  __| | |__   __ _  ___| | __" << endl
-        << "\t\t\t\t\t| |_ / _ \\/ _ \\/ _` | '_ \\ / _` |/ __| |/ /" << endl
-        << "\t\t\t\t\t|  _|  __/  __/ (_| | |_) | (_| | (__|   < " << endl
-        << "\t\t\t\t\t|_|  \\___|\\___|\\__,_|_.__/ \\__,_|\\___|_|\\_\\" << endl
-        << endl
-        << "\t\t\t\t\t\t" << "We'd like to know your side." << endl; 
+        cout << "\n\n\n\t\t\t\t   _____                                             _____ \n"
+             << "\t\t\t\t  ( ___ )                                           ( ___ )\n"
+             << "\t\t\t\t   |   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|   |\n"
+             << "\t\t\t\t   |   |  _____             _ _                _     |   |\n"
+             << "\t\t\t\t   |   | |  ___|__  ___  __| | |__   __ _  ___| | __ |   |\n"
+             << "\t\t\t\t   |   | | |_ / _ \\/ _ \\/ _` | '_ \\ / _` |/ __| |/ / |   |\n"
+             << "\t\t\t\t   |   | |  _|  __/  __/ (_| | |_) | (_| | (__|   <  |   |\n"
+             << "\t\t\t\t   |   | |_|  \\___|\\___|\\__,_|_.__/ \\__,_|\\___|_|\\_\\ |   |\n"
+             << "\t\t\t\t   |___|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|___|\n"
+             << "\t\t\t\t  (_____)                                           (_____)\n"
+             << "\t\t\t\t\t\t" << "We'd like to know your side." << endl; 
 
     // input file stream here (ifstream)
 
@@ -1278,7 +1314,7 @@ void sub_FB() {
 
         else if (strlen(feedbackInput) == 0) {
             cout << "\n\t\tInput is empty. Press \e[1mENTER\e[0m to continue." << endl;
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignores all characters exceeding 150
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');// ignores all characters exceeding 150
             system("cls");
 
         }
