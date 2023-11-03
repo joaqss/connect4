@@ -2,8 +2,6 @@ FEEDBACK: please debug the game.
 
 FEEDBACK: just a feedback test.
 
-FEEDBACK: guds
-
 FEEDBACK: Lol, nice code. Great job! Recommendation sent on LinkedIn, pls approve ey.
 
 FEEDBACK: refactor challenge starts now
@@ -19,6 +17,4 @@ FEEDBACK: testing the new file path of the feedback.
 FEEDBACK: feedback has been debugged!! 88888
 
 FEEDBACK: debug the code.
-
-FEEDBACK: fffff
 
